@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
-const db = require('./models').default; 
+const db = require('./models'); 
 const app = express();
 const path = require('path');
 
