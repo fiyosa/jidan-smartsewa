@@ -24,22 +24,22 @@ app.use(cors({
 
 app.use(express.json());
 
-// app.use(session({
-//   secret: 'smartsewa-secret', 
-//   resave: false,
-//   saveUninitialized: false,
-//   cookie: {
-//     httpOnly: true,
-//     secure: false, 
-//     maxAge: 24 * 60 * 60 * 1000, // 1 hari
-//   },
-// }));
+app.use(session({
+  secret: 'smartsewa-secret', 
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: false, 
+    maxAge: 24 * 60 * 60 * 1000, // 1 hari
+  },
+}));
 
 // route
 app.get('/', (req, res) => {
   res.json({ message: 'ok' });
 });
-// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Route API
 // app.use('/api', authRoutes);
 // app.use('/api', userRoutes);
