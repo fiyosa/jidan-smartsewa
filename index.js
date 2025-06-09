@@ -5,14 +5,14 @@ const session = require('express-session');
 const app = express();
 const path = require('path');
 
-const authRoutes = require('./routes/authRoutes');
-const userRoutes = require('./routes/userRoutes');
-const laporanRoutes = require('./routes/laporanRoutes');
-const historyRoutes = require('./routes/historyRoutes');
-const sensorRoutes = require('./routes/sensorRoutes');
-const relayRoutes = require('./routes/relayRoutes');
-const chatRoutes = require('./routes/chatRoutes');
-const createDefaultAdmin = require('./utils/createDefaultAdmin');
+// const authRoutes = require('./routes/authRoutes');
+// const userRoutes = require('./routes/userRoutes');
+// const laporanRoutes = require('./routes/laporanRoutes');
+// const historyRoutes = require('./routes/historyRoutes');
+// const sensorRoutes = require('./routes/sensorRoutes');
+// const relayRoutes = require('./routes/relayRoutes');
+// const chatRoutes = require('./routes/chatRoutes');
+// const createDefaultAdmin = require('./utils/createDefaultAdmin');
 
 require('dotenv').config();
 
@@ -24,22 +24,22 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use(session({
-  secret: 'smartsewa-secret', 
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    httpOnly: true,
-    secure: false, 
-    maxAge: 24 * 60 * 60 * 1000, // 1 hari
-  },
-}));
+// app.use(session({
+//   secret: 'smartsewa-secret', 
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: {
+//     httpOnly: true,
+//     secure: false, 
+//     maxAge: 24 * 60 * 60 * 1000, // 1 hari
+//   },
+// }));
 
 // route
 app.get('/', (req, res) => {
   res.json({ message: 'ok' });
 });
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Route API
 // app.use('/api', authRoutes);
 // app.use('/api', userRoutes);
