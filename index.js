@@ -39,6 +39,9 @@ app.use(session({
 app.get('/', (req, res) => {
   res.json({ message: 'ok' });
 });
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'test' });
+});
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Route API
 app.use('/api', authRoutes);
