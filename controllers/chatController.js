@@ -5,7 +5,8 @@ const pusher = require('../config/pusher');
 exports.sendMessage = async (req, res) => {
   try {
     const { roomId, message } = req.body;
-
+    console.log({req});
+    
     // Ambil user dari session
     const currentUser = req.session.user;
     if (!currentUser) {
