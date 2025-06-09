@@ -1,16 +1,62 @@
 const express = require('express');
+const cors = require('cors');
+const session = require('express-session');
+const db = require('./models'); 
 const app = express();
+const path = require('path');
 
-// Route dasar
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
+const laporanRoutes = require('./routes/laporanRoutes');
+const historyRoutes = require('./routes/historyRoutes');
+const sensorRoutes = require('./routes/sensorRoutes');
+const relayRoutes = require('./routes/relayRoutes');
+const chatRoutes = require('./routes/chatRoutes');
+const createDefaultAdmin = require('./utils/createDefaultAdmin');
+
+require('dotenv').config();
+
+app.use(cors({
+  // origin: ['http://localhost:3000', 'http://localhost:5173'],
+  origin: '*',
+  credentials: true
+}));
+
+app.use(express.json());
+
+app.use(session({
+  secret: 'smartsewa-secret', 
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: false, 
+    maxAge: 24 * 60 * 60 * 1000, // 1 hari
+  },
+}));
+
+// route
 app.get('/', (req, res) => {
-  res.send('Hello from Express on Vercel!');
+  res.json({ message: 'ok' });
 });
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Route API
+app.use('/api', authRoutes);
+app.use('/api', userRoutes);
+app.use('/api', laporanRoutes);
+app.use('/api', historyRoutes);
+app.use('/api', sensorRoutes);
+app.use('/api', relayRoutes);
+app.use('/api/chat', chatRoutes);
+// app.use('/api/user', userRoutes);
 
-// Ekspor app untuk Vercel
-module.exports = app;
+// Sinkronisasi database
+// db.sequelize.sync()
+//   .then(async () => {
+//     console.log("Database berhasil disinkronisasi.");
+//     await createDefaultAdmin(); 
+//   })
+//   .catch(err => console.error("Gagal sinkronisasi database: ", err));
 
-// Untuk development lokal
-if (require.main === module) {
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-}
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server berjalan di port ${PORT}`));
