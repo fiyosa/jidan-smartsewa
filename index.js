@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
-// const db = require('./models'); 
+const db = require('./models'); 
 const app = express();
 const path = require('path');
 
@@ -51,12 +51,12 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // app.use('/api/user', userRoutes);
 
 // Sinkronisasi database
-// db.sequelize.sync()
-//   .then(async () => {
-//     console.log("Database berhasil disinkronisasi.");
-//     await createDefaultAdmin(); 
-//   })
-//   .catch(err => console.error("Gagal sinkronisasi database: ", err));
+db.sequelize.sync()
+  .then(async () => {
+    console.log("Database berhasil disinkronisasi.");
+    await createDefaultAdmin(); 
+  })
+  .catch(err => console.error("Gagal sinkronisasi database: ", err));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server berjalan di port ${PORT}`));
