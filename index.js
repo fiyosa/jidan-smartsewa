@@ -16,12 +16,14 @@ const createDefaultAdmin = require('./utils/createDefaultAdmin');
 
 require('dotenv').config();
 
-app.use(cors({
-  // origin: ['http://localhost:3000', 'http://localhost:5173'],
-  origin: '*',
-  credentials: false
-  // methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
-}));
+// app.use(cors({
+//   // origin: ['http://localhost:3000', 'http://localhost:5173'],
+//   origin: '*',
+//   credentials: false
+//   // methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+// }));
+
+app.use(cors());
 
 app.use(express.json());
 
