@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
-const db = require('./models'); 
+// const db = require('./models'); 
 const app = express();
 const path = require('path');
 
@@ -41,13 +41,13 @@ app.get('/', (req, res) => {
 });
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Route API
-app.use('/api', authRoutes);
-app.use('/api', userRoutes);
-app.use('/api', laporanRoutes);
-app.use('/api', historyRoutes);
-app.use('/api', sensorRoutes);
-app.use('/api', relayRoutes);
-app.use('/api/chat', chatRoutes);
+// app.use('/api', authRoutes);
+// app.use('/api', userRoutes);
+// app.use('/api', laporanRoutes);
+// app.use('/api', historyRoutes);
+// app.use('/api', sensorRoutes);
+// app.use('/api', relayRoutes);
+// app.use('/api/chat', chatRoutes);
 // app.use('/api/user', userRoutes);
 
 // Sinkronisasi database
