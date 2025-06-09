@@ -5,14 +5,14 @@ const db = require('./models');
 const app = express();
 const path = require('path');
 
-// const authRoutes = require('./routes/authRoutes');
-// const userRoutes = require('./routes/userRoutes');
-// const laporanRoutes = require('./routes/laporanRoutes');
-// const historyRoutes = require('./routes/historyRoutes');
-// const sensorRoutes = require('./routes/sensorRoutes');
-// const relayRoutes = require('./routes/relayRoutes');
-// const chatRoutes = require('./routes/chatRoutes');
-// const createDefaultAdmin = require('./utils/createDefaultAdmin');
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
+const laporanRoutes = require('./routes/laporanRoutes');
+const historyRoutes = require('./routes/historyRoutes');
+const sensorRoutes = require('./routes/sensorRoutes');
+const relayRoutes = require('./routes/relayRoutes');
+const chatRoutes = require('./routes/chatRoutes');
+const createDefaultAdmin = require('./utils/createDefaultAdmin');
 
 require('dotenv').config();
 
@@ -41,13 +41,13 @@ app.get('/', (req, res) => {
 });
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Route API
-// app.use('/api', authRoutes);
-// app.use('/api', userRoutes);
-// app.use('/api', laporanRoutes);
-// app.use('/api', historyRoutes);
-// app.use('/api', sensorRoutes);
-// app.use('/api', relayRoutes);
-// app.use('/api/chat', chatRoutes);
+app.use('/api', authRoutes);
+app.use('/api', userRoutes);
+app.use('/api', laporanRoutes);
+app.use('/api', historyRoutes);
+app.use('/api', sensorRoutes);
+app.use('/api', relayRoutes);
+app.use('/api/chat', chatRoutes);
 // app.use('/api/user', userRoutes);
 
 // Sinkronisasi database
